@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
+import { promptPrefix } from "../safekeep";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -6,11 +7,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = `
-Give me a detailed pitch deck for a startup with the given details below. Please make sure the pitch deck goes in-depth, is research-backed, is professional, and gives numerical statistics, competitor analysis, and a target market to back up the startup idea.
-
-Details:
-`;
+const basePromptPrefix = promptPrefix;
 const generateAction = async (req, res) => {
   console.log(`API: ${basePromptPrefix}${req.body.userInput}`);
 
